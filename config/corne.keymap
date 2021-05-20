@@ -22,7 +22,7 @@
 							&kp TAB   &kp SQT  &kp COMMA &kp DOT &kp P         &kp Y  /*      &                      &*/                    &kp F          &kp G        &kp C   &kp R   &kp L   &kp BSLH
 							&kp ESC   &lt 1 A  &lt 2 O   &lt 3 E &lt 4 U       &kp I  /*      &                      &*/                    &kp D          &lt 5 H      &lt 6 T &lt 7 N &lt 8 S &kp MINUS
 							&kp LSHFT &kp SEMI &kp Q     &kp J   &kp K         &kp X  /*      &                      &*/                    &kp B          &kp M        &kp W   &kp W   &kp V   &mt RSHFT FSLH
-							/*        &        &         &*/     &mt LALT BSPC &mt LGUI SPACE &mt LC(LA(LSHIFT)) RET &mt RC(RA(RSHIFT)) RET &mt RGUI SPACE &mt RALT DEL
+							/*        &        &         &*/     &mt LALT BSPC &mt LGUI SPACE &mt LC(LA(LSHFT)) RET &mt RC(RA(RSHFT)) RET &mt RGUI SPACE &mt RALT DEL
                         >;
                 };
 

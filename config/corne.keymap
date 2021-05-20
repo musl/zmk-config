@@ -4,6 +4,11 @@
  * SPDX-License-Identifier: MIT
  */
 
+/*
+ * To align this business
+ * :'<,'>Tabularize / &/l1 
+ */
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -12,44 +17,93 @@
         keymap {
                 compatible = "zmk,keymap";
 
-                default_layer {
-// -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+                layer_0 {
                         bindings = <
-   &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &kp RSHFT
-                  &kp LGUI &mo 1 &kp SPACE   &kp RET &mo 2 &kp RALT
-                        >;
-                };
-                lower_layer {
-// -----------------------------------------------------------------------------------------
-// |  ESC |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  | BKSP |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
-                        bindings = <
-   &kp ESC    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5            &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp BSPC
-   &bt BT_CLR &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4      &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
-   &kp LSHFT  &trans       &trans       &trans       &trans       &trans            &trans   &trans   &trans &trans    &trans &trans
-                                        &kp LGUI     &trans       &kp SPACE         &kp RET &trans &kp RALT
+							&kp TAB   &kp SQT  &kp COMMA &kp DOT &kp P         &kp Y  /*      &                      &*/                    &kp F          &kp G        &kp C   &kp R   &kp L   &kp BSLH
+							&kp ESC   &lt 1 A  &lt 2 O   &lt 3 E &lt 4 U       &kp I  /*      &                      &*/                    &kp D          &lt 5 H      &lt 6 T &lt 7 N &lt 8 S &kp MINUS
+							&kp LSHFT &kp SEMI &kp Q     &kp J   &kp K         &kp X  /*      &                      &*/                    &kp B          &kp M        &kp W   &kp W   &kp V   &mt LSHIFT FSLH
+							/*        &        &         &*/     &mt LALT BSPC &mt LGUI SPACE &mt LC(LA(LSHIFT)) RET &mt RC(RA(RSHIFT)) RET &mt RGUI SPACE &mt RALT DEL
                         >;
                 };
 
-                raise_layer {
-// -----------------------------------------------------------------------------------------
-// |  ESC |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  *  |  (  |  )  | BKSP |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  {  |  }  | "|" |  `   |
-// | SHFT |     |     |     |     |     |   |  _  |  +  |  [  |  ]  |  \  |  ~   | // TODO: Fix this row when &mkp is committed
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+				// Right-Hand Symbols
+                layer_1 {
                         bindings = <
-   &kp  ESC  &kp EXCL  &kp AT  &kp HASH  &kp DLLR  &kp PRCNT   &kp CARET &kp AMPS  &kp KP_MULTIPLY &kp LPAR &kp RPAR &kp BSPC
-   &kp LCTRL &trans    &trans  &trans    &trans    &trans      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp PIPE &kp GRAVE
-   &kp LSHFT &trans    &trans  &trans    &trans    &trans      &trans    &trans    &trans          &trans   &kp BSLH &kp TILDE
-                                   &kp LGUI &trans &kp SPACE   &kp RET &trans &kp RALT
+							&none  &none  &none &none &none  &none /* &      &*/    &kp CARET &kp AMPS &kp ASTR &kp LPAR &kp RPAR &kp PLUS
+							&none  &trans &none &none &none  &none /* &      &*/    &none     &none    &none    &kp LBKT &kp RBKT &kp EQUAL
+							&trans &none  &none &none &none  &none /* &      &*/    &none     &none    &none    &kp LBRC &kp RBRC &trans
+							/*     &      &     &*/   &trans &trans   &trans &trans &trans    &trans
+                        >;
+                };
+
+				// Ten-Key
+                layer_2 {
+                        bindings = <
+							&none  &none &none  &none &none  &none  /* &      &*/    &none  &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_PLUS  &kp KP_MINUS
+							&none  &none &trans &none &none  &none  /* &      &*/    &none  &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_COMMA &kp KP_DOT
+							&trans &none &none  &none &none  &none  /* &      &*/    &none  &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp KP_EQUAL &kp RET
+							/*     &     &      &*/   &trans &trans    &trans &trans &trans &kp KP_N0
+                        >;
+                };
+
+				// Mouse Keys (Reserved for if/when that feature gets added) 
+                layer_3 {
+                        bindings = <
+							&none  &none &none &none  &none /* &      &*/    &none  &none  &none  &none &none &none &none
+							&none  &none &none &trans &none /* &      &*/    &none  &none  &none  &none &none &none &none
+							&trans &none &none &none  &none /* &      &*/    &none  &none  &none  &none &none &none &trans
+							/*     &     &     &*/    &trans   &trans &trans &trans &trans &trans
+                        >;
+                };
+
+				// Arrow, Movement Keys
+                layer_4 {
+                        bindings = <
+							&none  &none &none &none &none  &none /* &      &*/    &kp C_VOL_UP &kp HOME  &kp UP   &kp END         &kp PG_UP &none
+							&none  &none &none &none &trans &none /* &      &*/    &kp K_MUTE   &kp LEFT  &kp DOWN &kp RIGHT       &kp PG_DN &none
+							&trans &none &none &none &none  &none /* &      &*/    &kp C_VOL_UP &kp PSCRN &kp SLCK &kp PAUSE_BREAK &none     &trans
+							/*     &     &     &*/   &trans &trans   &trans &trans &trans       &trans
+                        >;
+                };
+
+
+				// Function Keys
+                layer_5 {
+                        bindings = <
+							&none  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5 /*  & &*/ &none &none  &none &none &none &none
+							&none  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10 /* & &*/ &none &trans &none &none &none &none
+							&trans &kp F11 &kp F12 &kp F13 &kp F14 &kp F15 /* & &*/ &none &none  &none &none &none &trans
+							/*     &     &     &*/   &trans &trans   &trans &trans &trans &trans
+                        >;
+                };
+
+				// Reserved
+                layer_6 {
+                        bindings = <
+							&none  &none &none &none &none  &none /* &      &*/    &none  &none  &none  &none &none &none
+							&none  &none &none &none &none  &none /* &      &*/    &none  &none  &trans &none &none &none
+							&trans &none &none &none &none  &none /* &      &*/    &none  &none  &none  &none &none &trans
+							/*     &     &     &*/   &trans &trans   &trans &trans &trans &trans
+                        >;
+                };
+
+				// Keyboard & Bluetooth Control
+                layer_7 {
+                        bindings = <
+							&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 /* &            &*/          &none        &none        &none &none  &none &none
+							&none        &none        &none        &none        &none        &none /*        &            &*/          &none        &none        &none &trans &none &none
+							&none        &none        &none        &none        &none        &none /*        &            &*/          &none        &none        &none &none  &none &none
+							/*           &            &            &*/          &out OUT_BLE &out OUT_TOG    &out OUT_USB &out OUT_BLE &out OUT_TOG &out OUT_USB
+                        >;
+                };
+
+				// Left-Hand Symbols
+                layer_8 {
+                        bindings = <
+							&kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT /* &     &*/   &none &none &none &none &none &none
+							&kp GRAVE &none    &none  &none    &none    &none    /*  &     &*/   &none &none &none &none &none &none
+							&trans    &none    &none  &none    &none    &none    /*  &     &*/   &none &none &none &none &none &trans
+							/*        &        &      &*/      &none    &none        &none &none &none &none
                         >;
                 };
         };

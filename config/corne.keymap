@@ -16,18 +16,18 @@
 
 / {
 		behaviors { 
-			hm: homerow_mods {
+			hmt: homerow_mod_tap {
 					compatible = "zmk,behavior-hold-tap";
-					label = "HOMEROW_MODS";
+					label = "HOMEROW_MOD_TAP";
 					#binding-cells = <2>;
 					tapping-term-ms = <150>;
 					quick_tap_ms = <0>;
 					flavor = "tap-preferred";
 					bindings = <&kp>, <&kp>;
 			};
-			hl: homerow_layers {
-					compatible = "zmk,behavior-layer-tap";
-					label = "HOMEROW_LAYERS";
+			hlt: homerow_layer_tap {
+					compatible = "zmk,behavior-hold-tap";
+					label = "HOMEROW_LAYER_TAP";
 					#binding-cells = <2>;
 					tapping-term-ms = <150>;
 					quick_tap_ms = <0>;
@@ -41,10 +41,10 @@
 
                 layer_0 {
                         bindings = <
-							&kp TAB   &kp SQT  &kp COMMA &kp DOT &kp P         &kp Y  /*       &                     &*/                   &kp F          &kp G        &kp C   &kp R   &kp L   &kp BSLH
-							&kp ESC   &hl 1 A  &hl 2 O   &hl 3 E &hl 4 U       &hm LCTRL I  /* &                     &*/                   &hm RCTRL D    &hl 5 H      &hl 6 T &hl 7 N &hl 8 S &kp MINUS
-							&kp LSHFT &kp SEMI &kp Q     &kp J   &kp K         &kp X  /*       &                     &*/                   &kp B          &kp M        &kp W   &kp V   &kp Z   &mt RSHFT FSLH
-							/*        &        &         &*/     &mt LALT BSPC &mt LGUI SPACE  &mt LC(LA(LSHFT)) RET &mt RC(RA(RSHFT)) RET &mt RGUI SPACE &mt RALT DEL
+							&kp TAB   &kp SQT  &kp COMMA &kp DOT  &kp P         &kp Y  /*        &                     &*/                   &kp F          &kp G        &kp C    &kp R    &kp L    &kp BSLH
+							&kp ESC   &hlt 1 A &hlt 2 O  &hlt 3 E &hlt 4 U      &hmt LCTRL I  /* &                     &*/                   &hmt RCTRL D   &hlt 5 H     &hlt 6 T &hlt 7 N &hlt 8 S &kp MINUS
+							&kp LSHFT &kp SEMI &kp Q     &kp J    &kp K         &kp X  /*        &                     &*/                   &kp B          &kp M        &kp W    &kp V    &kp Z    &mt RSHFT FSLH
+							/*        &        &         &*/      &mt LALT BSPC &mt LGUI SPACE   &mt LC(LA(LSHFT)) RET &mt RC(RA(RSHFT)) RET &mt RGUI SPACE &mt RALT DEL
                         >;
                 };
 

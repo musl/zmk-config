@@ -29,9 +29,9 @@
 				// Right-Hand Symbols
                 layer_1 {
                         bindings = <
-							&none  &none  &none &none &none  &none /* &      &*/    &kp CARET &kp AMPS &kp ASTR &kp LPAR &kp RPAR &kp PLUS
-							&none  &trans &none &none &none  &none /* &      &*/    &none     &none    &none    &kp LBKT &kp RBKT &kp EQUAL
-							&trans &none  &none &none &none  &none /* &      &*/    &none     &none    &none    &kp LBRC &kp RBRC &trans
+							&none  &none  &none &none &none  &none /* &      &*/    &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR &kp PLUS
+							&none  &trans &none &none &none  &none /* &      &*/    &none     &none    &none     &kp LBKT &kp RBKT &kp EQUAL
+							&trans &none  &none &none &none  &none /* &      &*/    &none     &none    &none     &kp LBRC &kp RBRC &trans
 							/*     &      &     &*/   &trans &trans   &trans &trans &trans    &trans
                         >;
                 };

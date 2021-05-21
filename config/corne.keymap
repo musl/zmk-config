@@ -36,7 +36,7 @@
 		};
 	};
 
-	&mt {
+	mt {
 		// Enable double-tap for repeating keys like QMK
 		quick_tap_ms = <150>; // seems like this needs to be less than tapping-term
 

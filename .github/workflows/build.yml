@@ -16,22 +16,24 @@ jobs:
       fail-fast: true
       matrix:
         include:
-          - sheild: corne_left
+          - shield: corne_left
             board: nice_nano
             artifact_prefix: hix_01
             keyboard_name: "Hix Corne L 01"  # ZMK_KEYBOARD_NAME must be less than 16 characters due to device BLE device name length limit.
-          - sheild: corne_right
+          - shield: corne_right
             board: nice_nano
             artifact_prefix: hix_01
             keyboard_name: "Hix Corne R 01"
-          - sheild: corne_left
+
+          - shield: corne_left
             board: nice_nano
             artifact_prefix: hix_02
             keyboard_name: "Hix Corne L 02"
-          - sheild: corne_right
+          - shield: corne_right
             board: nice_nano
             artifact_prefix: hix_02
             keyboard_name: "Hix Corne R 02"
+
     steps:
       - name: Checkout (${{ matrix.keyboard_name }})
         uses: actions/checkout@v2

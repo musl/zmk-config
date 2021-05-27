@@ -1,17 +1,42 @@
-on: [push, pull_request, workflow_dispatch]
-
+# yamllint disable rule:line-length
+---
 name: Build
+on:  # yamllint disable-line rule:truthy
+  - push
+  - pull_request
+  - workflow_dispatch
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:2.4
-    name: Build
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - sheild: corne_left
+            board: nice_nano
+            artifact_prefix: hix_01
+            keyboard_name: "Hix Corne L 01"  # ZMK_KEYBOARD_NAME must be less than 16 characters due to device BLE device name length limit.
+          - sheild: corne_right
+            board: nice_nano
+            artifact_prefix: hix_01
+            keyboard_name: "Hix Corne R 01"
+          - sheild: corne_left
+            board: nice_nano
+            artifact_prefix: hix_02
+            keyboard_name: "Hix Corne L 02"
+          - sheild: corne_right
+            board: nice_nano
+            artifact_prefix: hix_02
+            keyboard_name: "Hix Corne R 02"
     steps:
-      - name: Checkout
+      - name: Checkout (${{ matrix.keyboard_name }})
         uses: actions/checkout@v2
-      - name: Cache west modules
+
+      - name: Cache west modules (${{ matrix.keyboard_name }})
         uses: actions/cache@v2
         env:
           cache-name: cache-zephyr-modules
@@ -27,35 +52,31 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: West Init
+
+      - name: West Init (${{ matrix.keyboard_name }})
         run: west init -l config
-      - name: West Update
+
+      - name: West Update (${{ matrix.keyboard_name }})
         run: west update
-      - name: West Zephyr export
+
+      - name: West Zephyr export (${{ matrix.keyboard_name }})
         run: west zephyr-export
-      - name: West Build (Corne Left)
-        run: west build -s zmk/app -b nice_nano -- -DSHIELD=corne_left -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-      - name: Corne DTS File
+
+      - name: West Build (${{ matrix.keyboard_name }})
+        run: 'west build --pristine -s zmk/app -b ${{ matrix.board }} -- -DSHIELD=${{ matrix.shield }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DZMK_KEYBOARD_NAME="${{ matrix.keyboard_name }}"'
+
+      - name: Corne DTS File (${{ matrix.keyboard_name }})
         if: ${{ always() }}
         run: cat -n build/zephyr/nice_nano.dts.pre.tmp
-      - name: Corne Left Kconfig file
-        run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
-      - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 corne_left_nice_nano.uf2
-      - name: Archive (Corne Left)
-        uses: actions/upload-artifact@v2
-        with:
-          name: firmware
-          path: corne_left_nice_nano.uf2
-      - name: West Build (Corne Right)
-        run: west build --pristine -s zmk/app -b nice_nano -- -DSHIELD=corne_right -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
 
-      - name: Corne Right Kconfig file
+      - name: Corne Kconfig file (${{ matrix.keyboard_name }})
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"
-      - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 corne_right_nice_nano.uf2
-      - name: Archive (Corne Right)
+
+      - name: Rename Artifact (${{ matrix.keyboard_name }})
+        run: cp build/zephyr/zmk.uf2 ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2
+
+      - name: Archive Artifact (${{ matrix.keyboard_name }})
         uses: actions/upload-artifact@v2
         with:
           name: firmware
-          path: corne_right_nice_nano.uf2
+          path: ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2

@@ -9,11 +9,6 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 
-/*
- * To align layers by column in vim:
- * :'<,'>Tabularize / &/l0 
- */
-
 / {
 	behaviors { 
 		hmt: homerow_mod_tap {

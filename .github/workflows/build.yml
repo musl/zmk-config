@@ -65,7 +65,7 @@ jobs:
         run: west zephyr-export
 
       - name: West Build (${{ matrix.keyboard_name }})
-        run: 'west build --pristine -s zmk/app -b ${{ matrix.board }} -- -DSHIELD=${{ matrix.shield }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_KEYBOARD_NAME="${{ matrix.keyboard_name }}"'
+        run: west build --pristine -s zmk/app -b ${{ matrix.board }} -- -DSHIELD=${{ matrix.shield }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_KEYBOARD_NAME="\"${{ matrix.keyboard_name }}\""
 
       - name: Corne DTS File (${{ matrix.keyboard_name }})
         if: ${{ always() }}

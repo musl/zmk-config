@@ -20,6 +20,7 @@ jobs:
             board: nice_nano
             artifact_prefix: hix_01
             keyboard_name: "Hix Corne L 01"  # ZMK_KEYBOARD_NAME must be less than 16 characters due to device BLE device name length limit.
+
           - shield: corne_right
             board: nice_nano
             artifact_prefix: hix_01
@@ -29,6 +30,7 @@ jobs:
             board: nice_nano
             artifact_prefix: hix_02
             keyboard_name: "Hix Corne L 02"
+
           - shield: corne_right
             board: nice_nano
             artifact_prefix: hix_02
@@ -37,6 +39,10 @@ jobs:
     steps:
       - name: Checkout (${{ matrix.keyboard_name }})
         uses: actions/checkout@v2
+
+      - name: Fetch Git Metadata (${{ matrix.keyboard_name }})
+        id: git
+        run: echo "::set-output name=short_sha::$(git rev-parse --short HEAD)"
 
       - name: Cache west modules (${{ matrix.keyboard_name }})
         uses: actions/cache@v2
@@ -80,5 +86,5 @@ jobs:
       - name: Archive Artifact (${{ matrix.keyboard_name }})
         uses: actions/upload-artifact@v2
         with:
-          name: "firmware-${GITHUB_SHA}"
+          name: firmware-${{ steps.git.outputs.short_sha }}
           path: ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2

@@ -36,6 +36,11 @@ jobs:
             artifact_prefix: hix_02
             keyboard_name: "Hix Corne R 02"
 
+          - shield: settings_reset
+            board: nice_nano
+            artifact_prefix: reset
+            keyboard_name: "reset"
+
     steps:
       - name: Checkout (${{ matrix.keyboard_name }})
         uses: actions/checkout@v2

@@ -18,6 +18,8 @@ Sources:
 - `app/boards/shields/corne/corne_right.overlay`
 - `app/boards/arm/nice_nano/arduino_pro_micro_pins.dtsi`
 
+### Rows, Both Halves
+
 | row | arduino | nice!nano |
 |-----|---------|-----------|
 | 0   | D4      | 022       |
@@ -25,7 +27,8 @@ Sources:
 | 2   | D6      | 100       |
 | 3   | D7      | 011       |
 
-| left   |         |           |
+### Columns, Left Half
+
 | column | arduino | nice!nano |
 |--------|---------|-----------|
 | 0      | A3      | 031       |
@@ -35,7 +38,8 @@ Sources:
 | 4      | D15     | 113       |
 | 5      | D14     | 111       |
 
-| right  |         |           |
+### Columns, Right Half
+
 | column | arduino | nice!nano |
 |--------|---------|-----------|
 | 6      | D14     | 111       |
@@ -49,8 +53,8 @@ Sources:
 
 By adding filler comments with & symbols to match the columns, the
 layers can be automatically formatted with tabular.vim with the
-following command:
+following command, either in visual line or normal mode:
 
-```:'<,'>Tabularize / &/l0```
+```Tabularize / &/l0```
 
 

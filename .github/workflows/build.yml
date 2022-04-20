@@ -11,7 +11,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     container:
-      image: zmkfirmware/zmk-build-arm:2.5
+      image: zmkfirmware/zmk-build-arm:stable
     strategy:
       fail-fast: true
       matrix:
@@ -77,10 +77,6 @@ jobs:
 
       - name: West Build (${{ matrix.keyboard_name }})
         run: west build --pristine -s zmk/app -b ${{ matrix.board }} -- -DSHIELD=${{ matrix.shield }} -DZMK_CONFIG="${GITHUB_WORKSPACE}/config" -DCONFIG_ZMK_KEYBOARD_NAME="\"${{ matrix.keyboard_name }}\""
-
-      - name: Corne DTS File (${{ matrix.keyboard_name }})
-        if: ${{ always() }}
-        run: cat -n build/zephyr/nice_nano.dts.pre.tmp
 
       - name: Corne Kconfig file (${{ matrix.keyboard_name }})
         run: cat build/zephyr/.config | grep -v "^#" | grep -v "^$"

@@ -84,8 +84,12 @@ jobs:
       - name: Rename Artifact (${{ matrix.keyboard_name }})
         run: cp build/zephyr/zmk.uf2 ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2
 
+      - name: Make a Timestamp
+        id: timestamp
+        run: echo "::set-output name=value::$(date +'%Y%m%d-%H%M%S')"
+
       - name: Archive Artifact (${{ matrix.keyboard_name }})
         uses: actions/upload-artifact@v2
         with:
-          name: firmware-${{ steps.git.outputs.short_sha }}
+          name: hix-corne-firmware-${{ steps.git.outputs.short_sha }}-${{ steps.timestamp.outputs.value }}
           path: ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2

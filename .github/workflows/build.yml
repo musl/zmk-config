@@ -91,5 +91,5 @@ jobs:
       - name: Archive Artifact (${{ matrix.keyboard_name }})
         uses: actions/upload-artifact@v2
         with:
-          name: hix-corne-firmware-${{ steps.git.outputs.short_sha }}-${{ steps.timestamp.outputs.value }}
+          name: hix-corne-firmware-${{ steps.timestamp.outputs.value }}-${{ steps.git.outputs.short_sha }}
           path: ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2

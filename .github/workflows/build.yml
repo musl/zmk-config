@@ -9,7 +9,6 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   build:
     name: Build
-    needs: set_env_vars
     runs-on: ubuntu-latest
     container:
       image: zmkfirmware/zmk-build-arm:stable

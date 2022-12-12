@@ -13,7 +13,8 @@ jobs:
     steps:
       - name: Timestamp
         id: timestamp
-        run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')">> $GITHUB_ENV
+        run: |
+          echo "timestamp=$(date +'%Y%m%d-%H%M%S')" >> $GITHUB_ENV
 
   build:
     name: Build
@@ -94,7 +95,7 @@ jobs:
         run: cp build/zephyr/zmk.uf2 ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2
 
       - name: Archive Artifact (${{ matrix.keyboard_name }})
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: hix-corne-firmware-${{ env.timestamp }}-${{ steps.git.outputs.short_sha }}
           path: ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2

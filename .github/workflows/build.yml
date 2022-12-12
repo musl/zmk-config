@@ -7,15 +7,13 @@ on:  # yamllint disable-line rule:truthy
   - workflow_dispatch
 
 jobs:
-  vars:
-    name: Set Vars
+  set_env_vars:
+    name: Set Environment Variables
     runs-on: ubuntu-latest
     steps:
       - name: Timestamp
         id: timestamp
-        run: echo "::set-output name=value::$(date +'%Y%m%d-%H%M%S')"
-    outputs:
-      timestamp: ${{ steps.timestamp.outputs.value }}
+        run: echo "timestamp=$(date +'%Y%m%d-%H%M%S')">> $GITHUB_ENV
 
   build:
     name: Build
@@ -58,7 +56,7 @@ jobs:
 
       - name: Fetch Git Metadata (${{ matrix.keyboard_name }})
         id: git
-        run: echo "::set-output name=short_sha::$(git rev-parse --short HEAD)"
+        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Cache west modules (${{ matrix.keyboard_name }})
         uses: actions/cache@v2
@@ -98,5 +96,5 @@ jobs:
       - name: Archive Artifact (${{ matrix.keyboard_name }})
         uses: actions/upload-artifact@v2
         with:
-          name: hix-corne-firmware-${{ needs.vars.outputs.timestamp }}-${{ steps.git.outputs.short_sha }}
+          name: hix-corne-firmware-${{ env.timestamp }}-${{ steps.git.outputs.short_sha }}
           path: ${{ matrix.artifact_prefix }}_${{ matrix.shield }}_${{ matrix.board }}.uf2

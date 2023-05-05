@@ -79,10 +79,10 @@
 		// Mouse Keys (Reserved for if/when that feature gets added) 
 		layer_3 {
 			bindings = <
-				&none     &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
-				&none     &none &none &trans &none  &none /*  &*/ &none  &none  &none  &none &none &none
-				&kp LSHFT &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &kp RSHFT
-				/*        &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
+				&none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
+				&none  &none &none &trans &none  &none /*  &*/ &none  &none  &none  &none &none &none
+				&trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &trans
+				/*     &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
 				>;
 		};
 
@@ -101,7 +101,7 @@
 		layer_5 {
 			bindings = <
 				&none  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5 /*  &*/ &none  &none  &none  &none &none &none
-				&none  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10 /* &*/ &none  &trans &none  &none &none &none
+				&none  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10 /* &*/ &trans &trans &none  &none &none &none
 				&trans &kp F11 &kp F12 &kp F13 &kp F14 &kp F15 /* &*/ &none  &none  &none  &none &none &trans
 				/*     &       &*/     &trans  &trans  &trans /*  &*/ &trans &trans &trans
 				>;
@@ -110,30 +110,30 @@
 		// Reserved
 		layer_6 {
 			bindings = <
-				&none     &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
-				&none     &none &none &none  &none  &none /*  &*/ &none  &none  &trans &none &none &none
-				&kp LSHFT &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &kp RSHFT
-				/*        &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
+				&none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
+				&none  &none &none &none  &none  &none /*  &*/ &trans &none  &trans &none &none &none
+				&trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &trans
+				/*     &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
 				>;
 		};
 
 		// Keyboard & Bluetooth Control
 		layer_7 {
 			bindings = <
-				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none         &none      &none  &none             &none
-				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 /* &*/ &none        &none         &none      &trans &none             &none
-				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none         &none      &none  &ext_power EP_OFF &none
-				/*           &            &*/          &none        &trans       &none /*        &*/ &out OUT_USB &bt   OUT_BLE &bt BT_CLR
+				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none        &none      &none  &none             &none
+				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 /* &*/ &trans       &none        &none      &trans &none             &none
+				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none        &none      &none  &ext_power EP_OFF &none
+				/*           &            &*/          &none        &trans       &none /*        &*/ &out OUT_USB &out OUT_BLE &bt BT_CLR
 				>;
 		};
 
 		// Left-Hand Symbols
 		layer_8 {
 			bindings = <
-				&kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT /* &*/ &none &none &none &none &none &none
-				&kp GRAVE &none    &none  &none    &none    &none /*     &*/ &none &none &none &none &none &none
-				&none     &none    &none  &none    &none    &none /*     &*/ &none &none &none &none &none &trans
-				/*        &        &*/    &none    &none    &none /*     &*/ &none &none &none
+				&kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT /* &*/ &none  &none  &none  &none &none  &none
+				&kp GRAVE &none    &none  &none    &none    &none /*     &*/ &trans &none  &none  &none &trans &none
+				&trans    &none    &none  &none    &none    &none /*     &*/ &none  &none  &none  &none &none  &trans
+				/*        &        &*/    &trans   &trans   &trans /*    &*/ &trans &trans &trans
 				>;
 		};
 	};

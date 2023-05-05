@@ -2,9 +2,9 @@
 include:
   - shield: "corne_left"
     board: "nice_nano"
-    cmake-args: "'-DCONFIG_ZMK_KEYBOARD_NAME=\"Hix Corne\"'"
+    cmake-args: "-DCONFIG_ZMK_KEYBOARD_NAME='\"Hix Corne\"'"
   - shield: "corne_right"
     board: "nice_nano"
-    cmake-args: "'-DCONFIG_ZMK_KEYBOARD_NAME=\"Hix Corne\"'"
+    cmake-args: "-DCONFIG_ZMK_KEYBOARD_NAME='\"Hix Corne\"'"
   - shield: "settings_reset"
     board: "nice_nano"

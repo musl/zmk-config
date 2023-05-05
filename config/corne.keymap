@@ -11,6 +11,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/ext_power.h>
 
 / {
 	behaviors { 
@@ -119,9 +120,9 @@
 		// Keyboard & Bluetooth Control
 		layer_7 {
 			bindings = <
-				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none         &none      &none  &none &none
-				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 /* &*/ &none        &none         &none      &trans &none &none
-				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none         &none      &none  &none &none
+				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none         &none      &none  &none             &none
+				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 /* &*/ &none        &none         &none      &trans &none             &none
+				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none         &none      &none  &ext_power EP_OFF &none
 				/*           &            &*/          &none        &trans       &none /*        &*/ &out OUT_USB &bt   OUT_BLE &bt BT_CLR
 				>;
 		};

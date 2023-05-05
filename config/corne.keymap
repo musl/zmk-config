@@ -5,37 +5,43 @@
  *
  * vim tabularize command: (works in normal or visual line modes)
  *     Tabularize / &/l0
+ *
+ * Usage Notes:
+ *  - layer 9 can be accessed by layer taps on F and Y for ergonomics and troubleshooting.
+ *  - device switching is done by F or Y, and keys on the left-hand top row starting wih 0, so that 1 is directly
+ *    above the left pinky finger.
+ *  - clearing a device is done by holding F or Y, and then tapping X.
+ *  - output selection is done by holding F or Y and then tapping U for USB, E for BLE.
  */
 
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
-#include <dt-bindings/zmk/ext_power.h>
 
 / {
 	behaviors { 
-		hmt: homerow_mod_tap {
+		clt: custom_layer_tap {
 			compatible = "zmk,behavior-hold-tap";
-			label = "HOMEROW_MOD_TAP";
-			#binding-cells = <2>;
-			tapping-term-ms = <175>;
-			quick_tap_ms = <0>;
-			flavor = "tap-preferred";
-			bindings = <&kp>, <&kp>;
-		};
-		hlt: homerow_layer_tap {
-			compatible = "zmk,behavior-hold-tap";
-			label = "HOMEROW_LAYER_TAP";
+			label = "CUSTOM_LAYER_TAP";
 			#binding-cells = <2>;
 			tapping-term-ms = <175>;
 			quick_tap_ms = <0>;
 			flavor = "tap-preferred";
 			bindings = <&mo>, <&kp>;
 		};
-		htqt: hold_tap_quick_tap {
+		cmt: custom_mod_tap {
 			compatible = "zmk,behavior-hold-tap";
-			label = "HOLD_TAP_QUICK_TAP";
+			label = "CUSTOM_MOD_TAP";
+			#binding-cells = <2>;
+			tapping-term-ms = <175>;
+			quick_tap_ms = <0>;
+			flavor = "tap-preferred";
+			bindings = <&kp>, <&kp>;
+		};
+		qmt: quick_mod_tap {
+			compatible = "zmk,behavior-hold-tap";
+			label = "QUICK_MOD_TAP";
 			#binding-cells = <2>;
 			tapping-term-ms = <175>;
 			quick_tap_ms = <150>;
@@ -49,10 +55,10 @@
 
 		layer_0 {
 			bindings = <
-				&kp TAB   &kp SQT  &kp COMMA &kp DOT         &kp P            &kp Y /*                   &*/ &kp F                   &kp G            &kp C          &kp R    &kp L    &kp BSLH
-				&kp ESC   &hlt 1 A &hlt 2 O  &hlt 3 E        &hlt 4 U         &hmt LCTRL I /*            &*/ &hmt RCTRL D            &hlt 5 H         &hlt 6 T       &hlt 7 N &hlt 8 S &kp MINUS
-				&kp LSHFT &kp SEMI &kp Q     &kp J           &kp K            &kp X /*                   &*/ &kp B                   &kp M            &kp W          &kp V    &kp Z    &mt RSHFT FSLH
-				/*        &        &*/       &htqt LALT BSPC &htqt LGUI SPACE &htqt LC(LA(LSHFT)) RET /* &*/ &htqt RC(RA(RSHFT)) RET &htqt RGUI SPACE &htqt RALT DEL
+				&kp TAB   &kp SQT  &kp COMMA &kp DOT        &kp P           &clt 9 Y /*               &*/ &clt 9 F               &kp G           &kp C         &kp R    &kp L    &kp BSLH
+				&kp ESC   &clt 1 A &clt 2 O  &clt 3 E       &clt 4 U        &cmt LCTRL I /*           &*/ &cmt RCTRL D           &clt 5 H        &clt 6 T      &clt 7 N &clt 8 S &kp MINUS
+				&kp LSHFT &kp SEMI &kp Q     &kp J          &kp K           &kp X /*                  &*/ &kp B                  &kp M           &kp W         &kp V    &kp Z    &mt RSHFT FSLH
+				/*        &        &*/       &qmt LALT BSPC &qmt LGUI SPACE &qmt LC(LA(LSHFT)) RET /* &*/ &qmt RC(RA(RSHFT)) RET &qmt RGUI SPACE &qmt RALT DEL
 				>;
 		};
 
@@ -117,13 +123,13 @@
 				>;
 		};
 
-		// Keyboard & Bluetooth Control
+		// Reserved
 		layer_7 {
 			bindings = <
-				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none        &none      &none  &none             &none
-				&bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &bt BT_SEL 5 /* &*/ &trans       &none        &none      &trans &none             &none
-				&none        &none        &none        &none        &none        &none /*        &*/ &none        &none        &none      &none  &ext_power EP_OFF &none
-				/*           &            &*/          &none        &trans       &none /*        &*/ &out OUT_USB &out OUT_BLE &bt BT_CLR
+				&none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
+				&none  &none &none &none  &none  &none /*  &*/ &trans &none  &trans &none &none &none
+				&trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &trans
+				/*     &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
 				>;
 		};
 
@@ -136,6 +142,17 @@
 				/*        &        &*/    &trans   &trans   &trans /*    &*/ &trans &trans &trans
 				>;
 		};
+
+		// Keyboard & Bluetooth Control
+		layer_9 {
+			bindings = <
+				&none &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans /*     &*/ &trans &none &none &none &none &none
+				&none &none        &none        &out OUT_BLE &out OUT_USB &none /*      &*/ &none  &none &none &none &none &none
+				&none &none        &none        &none        &none        &bt BT_CLR /* &*/ &none  &none &none &none &none &none
+				/*    &            &*/          &none        &none        &none /*      &*/ &none  &none &none
+				>;
+		};
+
 	};
 };
 

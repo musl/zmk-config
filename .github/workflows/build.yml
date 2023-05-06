@@ -1,6 +1,17 @@
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
+  vars:
+    runs-on: ubuntu-latest
+    outputs:
+      date_stamp: ${{ steps.date_step.outputs.date_stamp }}
+    steps:
+      - id: date_step
+        run: echo "date_stamp='$(date +%Y%m%d-%H%M%S)'" >> $GITHUB_OUTPUT
   build:
+    needs: [ vars ]
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    with:
+      archive_name: "hix-corne-${GITHUB_SHA::7}-${{ needs.vars.outputs.date_stamp }}"
+
 

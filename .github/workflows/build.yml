@@ -5,13 +5,16 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       date_stamp: ${{ steps.date_step.outputs.date_stamp }}
+      short_sha: ${{ steps.date_step.outputs.short_sha }}
     steps:
       - id: date_step
         run: echo "date_stamp='$(date +%Y%m%d-%H%M%S)'" >> $GITHUB_OUTPUT
+      - id: date_step
+        run: echo "short_sha='${GITHUB_SHA::7}'" >> $GITHUB_OUTPUT
   build:
     needs: [ vars ]
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
     with:
-      archive_name: "hix-corne-${GITHUB_SHA::7}-${{ needs.vars.outputs.date_stamp }}"
+      archive_name: "hix-corne-${{ needs.vars.outputs.short_sha }}-${{ needs.vars.outputs.date_stamp }}"
 
 

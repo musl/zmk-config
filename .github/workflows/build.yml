@@ -8,9 +8,9 @@ jobs:
       short_sha: ${{ steps.short_sha_step.outputs.short_sha }}
     steps:
       - id: date_step
-        run: echo "date_stamp='$(date +%Y%m%d-%H%M%S)'" >> $GITHUB_OUTPUT
+        run: echo "date_stamp=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_OUTPUT
       - id: short_sha_step
-        run: echo "short_sha='${GITHUB_SHA::7}'" >> $GITHUB_OUTPUT
+        run: echo "short_sha=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
   build:
     needs: [ vars ]
     uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main

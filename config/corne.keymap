@@ -51,8 +51,8 @@
 	};
 
 	macros {
-		ZMK_MACRO(macro_x bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;);
-		ZMK_MACRO(macro_q, bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;);
+		ZMK_MACRO(macro_x, bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;)
+		ZMK_MACRO(macro_q, bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;)
 	};
 
 	keymap {

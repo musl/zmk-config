@@ -122,10 +122,10 @@
 		// Macros
 		layer_6 {
 			bindings = <
-				&none  &none &none          &none  &none    &none /*    &*/    &none  &macro_gg &none  &none &none &none
-				&none  &none &none     none &none  &none /* &*/         &trans &none  &trans    &none  &none &none
-				&trans &none &macro_qa      &none  &none    &macro_x /* &*/    &none  &none     &none  &none &none &trans
-				/*     &     &*/            &trans &trans   &trans /*   &*/    &trans &trans    &trans
+				&none  &none &none     &none  &none  &none /*    &*/ &none  &macro_gg &none  &none &none &none
+				&none  &none &none     &none  &none  &none /*    &*/ &trans &none     &trans &none &none &none
+				&trans &none &macro_qa &none  &none  &macro_x /* &*/ &none  &none     &none  &none &none &trans
+				/*     &     &*/       &trans &trans &trans /*   &*/ &trans &trans    &trans
 				>;
 		};
 

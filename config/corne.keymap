@@ -51,8 +51,9 @@
 	};
 
 	macros {
-		ZMK_MACRO(macro_x, bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;)
-		ZMK_MACRO(macro_q, bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;)
+		ZMK_MACRO(macro_gg, bindings = <&kp ESC &kp COLON &kp G &kp G &kp EQUAL &kp LS(G)>;) // <ESC>gg=G
+		ZMK_MACRO(macro_x,  bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;) // <ESC>:x<ENTER>
+		ZMK_MACRO(macro_qa, bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;) // <ESC>:qa!<ENTER>
 	};
 
 	keymap {
@@ -100,10 +101,10 @@
 		// Arrow, Movement, media Keys
 		layer_4 {
 			bindings = <
-				&none  &none &none &none  &none  &none /*  &*/ &kp K_VOL_UP &kp HOME  &kp UP     &kp END         &kp PG_UP &none
-				&none  &none &none &none  &trans &none /*  &*/ &kp K_MUTE   &kp LEFT  &kp DOWN   &kp RIGHT       &kp PG_DN &none
-				&trans &none &none &none  &none  &none /*  &*/ &kp K_VOL_DN &kp PSCRN &kp SLCK   &kp PAUSE_BREAK &none     &trans
-				/*     &     &*/   &trans &trans &trans /* &*/ &kp K_PREV   &kp K_PP  &kp K_NEXT
+				&none  &none &none &none  &none  &none /*  &*/ &kp C_VOL_UP &kp HOME  &kp UP     &kp END         &kp PG_UP &none
+				&none  &none &none &none  &trans &none /*  &*/ &kp C_MUTE   &kp LEFT  &kp DOWN   &kp RIGHT       &kp PG_DN &none
+				&trans &none &none &none  &none  &none /*  &*/ &kp C_VOL_DN &kp PSCRN &kp SLCK   &kp PAUSE_BREAK &none     &trans
+				/*     &     &*/   &trans &trans &trans /* &*/ &kp C_PREV   &kp C_PP  &kp C_NEXT
 				>;
 		};
 
@@ -121,10 +122,10 @@
 		// Macros
 		layer_6 {
 			bindings = <
-				&none  &none &none    &none  &none  &none /*    &*/ &none  &none  &none  &none &none &none
-				&none  &none &none    &none  &none  &none /*    &*/ &trans &none  &trans &none &none &none
-				&trans &none &macro_q &none  &none  &macro_x /* &*/ &none  &none  &none  &none &none &trans
-				/*     &     &*/      &trans &trans &trans /*   &*/ &trans &trans &trans
+				&none  &none &none          &none  &none    &none /*    &*/    &none  &macro_gg &none  &none &none &none
+				&none  &none &none     none &none  &none /* &*/         &trans &none  &trans    &none  &none &none
+				&trans &none &macro_qa      &none  &none    &macro_x /* &*/    &none  &none     &none  &none &none &trans
+				/*     &     &*/            &trans &trans   &trans /*   &*/    &trans &trans    &trans
 				>;
 		};
 

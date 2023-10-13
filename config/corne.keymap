@@ -77,7 +77,7 @@
 
         layer_0 {
             bindings = <
-                   &kp TAB   &kp SQT   &kp COMMA      &kp DOT         &kp P                     &clt 9 Y /*      &*/                    &clt 9 F        &kp G         &kp C     &kp R     &kp L     &kp BSLH
+                   &kp TAB   &kp SQT   &kp COMMA      &kp DOT         &kp P                     &tpmt 9 Y /*     &*/                    &tpmt 9 F       &kp G         &kp C     &kp R     &kp L     &kp BSLH
                    &kp ESC   &lhpt 1 A &lhpt 2 O      &lhpt 3 E       &lhpt 4 U                 &tpmt LCTRL I /* &*/                    &tpmt RCTRL D   &rhpt 5 H     &rhpt 6 T &rhpt 7 N &rhpt 8 S &kp MINUS
                    &kp LSHFT &kp SEMI  &kp Q          &kp J           &kp K                     &kp X /*         &*/                    &kp B           &kp M         &kp W     &kp V     &kp Z     &mt RSHFT FSLH
                 /* &         &*/       &bmt LALT BSPC &bmt LGUI SPACE &bmt LC(LA(LSHFT)) RET /* &*/              &bmt RC(RA(RSHFT)) RET &bmt RGUI SPACE &bmt RALT DEL

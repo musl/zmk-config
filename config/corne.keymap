@@ -22,14 +22,14 @@
 
 / {
     behaviors { 
-        tpmt: tap_preferred_mod_tap {
+        tpmt: tap_preferred_mo_tap {
             compatible = "zmk,behavior-hold-tap";
             label = "TPMT";
             #binding-cells = <2>;
             tapping-term-ms = <150>;
             quick_tap_ms = <0>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&kp>;
+            bindings = <&mo>, <&kp>;
         };
         bmt: balanced_mod_tap {
             compatible = "zmk,behavior-hold-tap";
@@ -54,7 +54,7 @@
         layer_0 {
             bindings = <
                    &kp TAB   &kp SQT   &kp COMMA      &kp DOT         &kp P                     &tpmt 9 Y /*     &*/                    &tpmt 9 F       &kp G         &kp C     &kp R     &kp L     &kp BSLH
-                   &kp ESC   &tpmt 1 A &tpmt 2 O      &tpmt 3 E       &tpmt 4 U                 &tpmt LCTRL I /* &*/                    &tpmt RCTRL D   &tpmt 5 H     &tpmt 6 T &tpmt 7 N &tpmt 8 S &kp MINUSs
+                   &kp ESC   &tpmt 1 A &tpmt 2 O      &tpmt 3 E       &tpmt 4 U                 &tpmt LCTRL I /* &*/                    &tpmt RCTRL D   &tpmt 5 H     &tpmt 6 T &tpmt 7 N &tpmt 8 S &kp MINUS
                    &kp LSHFT &kp SEMI  &kp Q          &kp J           &kp K                     &kp X /*         &*/                    &kp B           &kp M         &kp W     &kp V     &kp Z     &mt RSHFT FSLH
                 /* &         &*/       &bmt LALT BSPC &bmt LGUI SPACE &bmt LC(LA(LSHFT)) RET /* &*/              &bmt RC(RA(RSHFT)) RET &bmt RGUI SPACE &bmt RALT DEL
                 >;

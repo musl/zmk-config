@@ -1,4 +1,5 @@
-/* vim: set ft=c sw=4 ts=4 :
+/* vim: set ft=c sw=4 ts=4 sts=4 expandtab :
+ *
  * Copyright (c) 2020 The ZMK Contributors
  *
  * SPDX-License-Identifier: MIT
@@ -20,145 +21,160 @@
 #include <dt-bindings/zmk/outputs.h>
 
 / {
-	behaviors { 
-		clt: custom_layer_tap {
-			compatible = "zmk,behavior-hold-tap";
-			label = "CUSTOM_LAYER_TAP";
-			#binding-cells = <2>;
-			tapping-term-ms = <200>;
-			quick_tap_ms = <0>;
-			flavor = "tap-preferred";
-			bindings = <&mo>, <&kp>;
-		};
-		cmt: custom_mod_tap {
-			compatible = "zmk,behavior-hold-tap";
-			label = "CUSTOM_MOD_TAP";
-			#binding-cells = <2>;
-			tapping-term-ms = <200>;
-			quick_tap_ms = <0>;
-			flavor = "tap-preferred";
-			bindings = <&kp>, <&kp>;
-		};
-		qmt: quick_mod_tap {
-			compatible = "zmk,behavior-hold-tap";
-			label = "QUICK_MOD_TAP";
-			#binding-cells = <2>;
-			tapping-term-ms = <200>;
-			quick_tap_ms = <175>;
-			flavor = "tap-preferred";
-			bindings = <&kp>, <&kp>;
-		};
-	};
+    behaviors { 
+        lhpht: left_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "LHPHT";
+            #binding-cells = <2>;
+            tapping-term-ms = <100>;
+            quick_tap_ms = <200>;
+            flavor = "tap-unless-interrupted";
+            bindings = <&mo>, <&kp>;
+            // These keys (all the keys on the opposite half) are the only keys that can cause the tap to become a hold by
+            // interrupting the keypress.
+            hold-trigger-key-positions = <6, 7, 8, 9, 10, 11, 18, 19, 20, 21, 22, 23, 30, 31, 32, 33, 34, 35, 39, 40, 41>;
+        };
+        rhpht: right_hand_positional_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "RHPHT";
+            #binding-cells = <2>;
+            tapping-term-ms = <100>;
+            quick_tap_ms = <200>;
+            flavor = "tap-unless-interrupted";
+            bindings = <&mo>, <&kp>;
+            // These keys (all the keys on the opposite half) are the only keys that can cause the tap to become a hold by
+            // interrupting the keypress.
+            hold-trigger-key-positions = <0, 1, 2, 3, 4, 5, 12, 13, 14, 15, 16, 17, 24, 25, 26, 27, 28, 29, 36, 37, 38>;
+        };
+        tpmt: tap_preferred_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TPMT";
+            #binding-cells = <2>;
+            tapping-term-ms = <150>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+        bmt: balanced_mod_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "BMT";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick_tap_ms = <0>;
+            flavor = "balanced";
+            bindings = <&kp>, <&kp>;
+        };
+    };
 
-	macros {
-		ZMK_MACRO(macro_gg, bindings = <&kp ESC &kp COLON &kp G &kp G &kp EQUAL &kp LS(G)>;) // <ESC>gg=G
-		ZMK_MACRO(macro_x,  bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;) // <ESC>:x<ENTER>
-		ZMK_MACRO(macro_qa, bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;) // <ESC>:qa!<ENTER>
-	};
+    macros {
+        ZMK_MACRO(macro_gg, bindings = <&kp ESC &kp COLON &kp G &kp G &kp EQUAL &kp LS(G)>;) // <ESC>gg=G
+        ZMK_MACRO(macro_x,  bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;) // <ESC>:x<ENTER>
+        ZMK_MACRO(macro_qa, bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;) // <ESC>:qa!<ENTER>
+    };
 
-	keymap {
-		compatible = "zmk,keymap";
+    keymap {
+        compatible = "zmk,keymap";
 
-		layer_0 {
-			bindings = <
-				&kp TAB   &kp SQT  &kp COMMA &kp DOT        &kp P           &clt 9 Y /*               &*/ &clt 9 F               &kp G           &kp C         &kp R    &kp L    &kp BSLH
-				&kp ESC   &clt 1 A &clt 2 O  &clt 3 E       &clt 4 U        &cmt LCTRL I /*           &*/ &cmt RCTRL D           &clt 5 H        &clt 6 T      &clt 7 N &clt 8 S &kp MINUS
-				&kp LSHFT &kp SEMI &kp Q     &kp J          &kp K           &kp X /*                  &*/ &kp B                  &kp M           &kp W         &kp V    &kp Z    &mt RSHFT FSLH
-				/*        &        &*/       &qmt LALT BSPC &qmt LGUI SPACE &qmt LC(LA(LSHFT)) RET /* &*/ &qmt RC(RA(RSHFT)) RET &qmt RGUI SPACE &qmt RALT DEL
-				>;
-		};
+        layer_0 {
+            bindings = <
+                   &kp TAB   &kp SQT   &kp COMMA      &kp DOT         &kp P                     &clt 9 Y /*      &*/                    &clt 9 F        &kp G         &kp C     &kp R     &kp L     &kp BSLH
+                   &kp ESC   &lhpt 1 A &lhpt 2 O      &lhpt 3 E       &lhpt 4 U                 &tpmt LCTRL I /* &*/                    &tpmt RCTRL D   &rhpt 5 H     &rhpt 6 T &rhpt 7 N &rhpt 8 S &kp MINUS
+                   &kp LSHFT &kp SEMI  &kp Q          &kp J           &kp K                     &kp X /*         &*/                    &kp B           &kp M         &kp W     &kp V     &kp Z     &mt RSHFT FSLH
+                /* &         &*/       &bmt LALT BSPC &bmt LGUI SPACE &bmt LC(LA(LSHFT)) RET /* &*/              &bmt RC(RA(RSHFT)) RET &bmt RGUI SPACE &bmt RALT DEL
+                >;
+        };
 
-		// Right-Hand Symbols
-		layer_1 {
-			bindings = <
-				&none  &none  &none &none  &none  &none /*  &*/ &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR &kp PLUS
-				&none  &trans &none &none  &none  &none /*  &*/ &none     &none    &none     &kp LBKT &kp RBKT &kp EQUAL
-				&trans &none  &none &none  &none  &none /*  &*/ &none     &none    &none     &kp LBRC &kp RBRC &kp QUESTION
-				/*     &      &*/   &trans &trans &trans /* &*/ &trans    &trans   &trans
-				>;
-		};
+        // Right-Hand Symbols
+        layer_1 {
+            bindings = <
+                &none  &none  &none &none  &none  &none /*  &*/ &kp CARET &kp AMPS &kp ASTRK &kp LPAR &kp RPAR &kp PLUS
+                &none  &trans &none &none  &none  &none /*  &*/ &none     &none    &none     &kp LBKT &kp RBKT &kp EQUAL
+                &trans &none  &none &none  &none  &none /*  &*/ &none     &none    &none     &kp LBRC &kp RBRC &kp QUESTION
+                /*     &      &*/   &trans &trans &trans /* &*/ &trans    &trans   &trans
+                >;
+        };
 
-		// Ten-Key
-		layer_2 {
-			bindings = <
-				&none  &none &none  &none  &none  &none /*  &*/ &none  &kp N7 &kp N8 &kp N9 &kp KP_PLUS  &kp KP_MINUS
-				&none  &none &trans &none  &none  &none /*  &*/ &none  &kp N4 &kp N5 &kp N6 &kp KP_COMMA &kp KP_DOT
-				&trans &none &none  &none  &none  &none /*  &*/ &none  &kp N1 &kp N2 &kp N3 &kp KP_EQUAL &kp RET
-				/*     &     &*/    &trans &trans &trans /* &*/ &trans &trans &kp N0
-				>;
-		};
+        // Ten-Key
+        layer_2 {
+            bindings = <
+                &none  &none &none  &none  &none  &none /*  &*/ &none  &kp N7 &kp N8 &kp N9 &kp KP_PLUS  &kp KP_MINUS
+                &none  &none &trans &none  &none  &none /*  &*/ &none  &kp N4 &kp N5 &kp N6 &kp KP_COMMA &kp KP_DOT
+                &trans &none &none  &none  &none  &none /*  &*/ &none  &kp N1 &kp N2 &kp N3 &kp KP_EQUAL &kp RET
+                /*     &     &*/    &trans &trans &trans /* &*/ &trans &trans &kp N0
+                >;
+        };
 
-		// Mouse Keys (Reserved for if/when that feature gets added) 
-		layer_3 {
-			bindings = <
-				&none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
-				&none  &none &none &trans &none  &none /*  &*/ &none  &none  &none  &none &none &none
-				&trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &trans
-				/*     &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
-				>;
-		};
+        // Mouse Keys (Reserved for if/when that feature gets added) 
+        layer_3 {
+            bindings = <
+                &none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
+                &none  &none &none &trans &none  &none /*  &*/ &none  &none  &none  &none &none &none
+                &trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &trans
+                /*     &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
+                >;
+        };
 
-		// Arrow, Movement, media Keys
-		layer_4 {
-			bindings = <
-				&none  &none &none &none  &none  &none /*  &*/ &kp C_VOL_UP &kp HOME  &kp UP     &kp END         &kp PG_UP &none
-				&none  &none &none &none  &trans &none /*  &*/ &kp C_MUTE   &kp LEFT  &kp DOWN   &kp RIGHT       &kp PG_DN &none
-				&trans &none &none &none  &none  &none /*  &*/ &kp C_VOL_DN &kp PSCRN &kp SLCK   &kp PAUSE_BREAK &none     &trans
-				/*     &     &*/   &trans &trans &trans /* &*/ &kp C_PREV   &kp C_PP  &kp C_NEXT
-				>;
-		};
+        // Arrow, Movement, media Keys
+        layer_4 {
+            bindings = <
+                &none  &none &none &none  &none  &none /*  &*/ &kp C_VOL_UP &kp HOME  &kp UP     &kp END         &kp PG_UP &none
+                &none  &none &none &none  &trans &none /*  &*/ &kp C_MUTE   &kp LEFT  &kp DOWN   &kp RIGHT       &kp PG_DN &none
+                &trans &none &none &none  &none  &none /*  &*/ &kp C_VOL_DN &kp PSCRN &kp SLCK   &kp PAUSE_BREAK &none     &trans
+                /*     &     &*/   &trans &trans &trans /* &*/ &kp C_PREV   &kp C_PP  &kp C_NEXT
+                >;
+        };
 
 
-		// Function Keys
-		layer_5 {
-			bindings = <
-				&none  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5 /*  &*/ &none  &none  &none  &none &none &none
-				&none  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10 /* &*/ &trans &trans &none  &none &none &none
-				&trans &kp F11 &kp F12 &kp F13 &kp F14 &kp F15 /* &*/ &none  &none  &none  &none &none &trans
-				/*     &       &*/     &trans  &trans  &trans /*  &*/ &trans &trans &trans
-				>;
-		};
+        // Function Keys
+        layer_5 {
+            bindings = <
+                &none  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5 /*  &*/ &none  &none  &none  &none &none &none
+                &none  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10 /* &*/ &trans &trans &none  &none &none &none
+                &trans &kp F11 &kp F12 &kp F13 &kp F14 &kp F15 /* &*/ &none  &none  &none  &none &none &trans
+                /*     &       &*/     &trans  &trans  &trans /*  &*/ &trans &trans &trans
+                >;
+        };
 
-		// Macros
-		layer_6 {
-			bindings = <
-				&none  &none &none     &none  &none  &none /*    &*/ &none  &macro_gg &none  &none &none &none
-				&none  &none &none     &none  &none  &none /*    &*/ &trans &none     &trans &none &none &none
-				&trans &none &macro_qa &none  &none  &macro_x /* &*/ &none  &none     &none  &none &none &trans
-				/*     &     &*/       &trans &trans &trans /*   &*/ &trans &trans    &trans
-				>;
-		};
+        // Macros
+        layer_6 {
+            bindings = <
+                &none  &none &none     &none  &none  &none /*    &*/ &none  &macro_gg &none  &none &none &none
+                &none  &none &none     &none  &none  &none /*    &*/ &trans &none     &trans &none &none &none
+                &trans &none &macro_qa &none  &none  &macro_x /* &*/ &none  &none     &none  &none &none &trans
+                /*     &     &*/       &trans &trans &trans /*   &*/ &trans &trans    &trans
+                >;
+        };
 
-		// Reserved
-		layer_7 {
-			bindings = <
-				&none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
-				&none  &none &none &none  &none  &none /*  &*/ &trans &none  &trans &none &none &none
-				&trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &trans
-				/*     &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
-				>;
-		};
+        // Reserved
+        layer_7 {
+            bindings = <
+                &none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
+                &none  &none &none &none  &none  &none /*  &*/ &trans &none  &trans &none &none &none
+                &trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &trans
+                /*     &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
+                >;
+        };
 
-		// Left-Hand Symbols
-		layer_8 {
-			bindings = <
-				&kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT /* &*/ &none  &none  &none  &none &none  &none
-				&kp GRAVE &none    &none  &none    &none    &none /*     &*/ &trans &none  &none  &none &trans &none
-				&trans    &none    &none  &none    &none    &none /*     &*/ &none  &none  &none  &none &none  &trans
-				/*        &        &*/    &trans   &trans   &trans /*    &*/ &trans &trans &trans
-				>;
-		};
+        // Left-Hand Symbols
+        layer_8 {
+            bindings = <
+                &kp TILDE &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT /* &*/ &none  &none  &none  &none &none  &none
+                &kp GRAVE &none    &none  &none    &none    &none /*     &*/ &trans &none  &none  &none &trans &none
+                &trans    &none    &none  &none    &none    &none /*     &*/ &none  &none  &none  &none &none  &trans
+                /*        &        &*/    &trans   &trans   &trans /*    &*/ &trans &trans &trans
+                >;
+        };
 
-		// Keyboard & Bluetooth Control
-		layer_9 {
-			bindings = <
-				&none &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans /*     &*/ &trans &none &none &none &none &none
-				&none &none        &none        &out OUT_BLE &out OUT_USB &none /*      &*/ &none  &none &none &none &none &none
-				&none &none        &none        &none        &none        &bt BT_CLR /* &*/ &none  &none &none &none &none &none
-				/*    &            &*/          &none        &none        &none /*      &*/ &none  &none &none
-				>;
-		};
+        // Keyboard & Bluetooth Control
+        layer_9 {
+            bindings = <
+                &none &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans /*     &*/ &trans &none &none &none &none &none
+                &none &none        &none        &out OUT_BLE &out OUT_USB &none /*      &*/ &none  &none &none &none &none &none
+                &none &none        &none        &none        &none        &bt BT_CLR /* &*/ &none  &none &none &none &none &none
+                /*    &            &*/          &none        &none        &none /*      &*/ &none  &none &none
+                >;
+        };
 
-	};
+    };
 };
 

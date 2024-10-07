@@ -22,51 +22,32 @@
 
 / {
     behaviors { 
-        tmo: tap_preferred_layer_tap {
+        tplt: tap_preferred_layer_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "TMO";
+            label = "TPLT";
             #binding-cells = <2>;
             tapping-term-ms = <150>;
             quick_tap_ms = <0>;
             flavor = "tap-preferred";
             bindings = <&mo>, <&kp>;
         };
-        tmt: tap_preferred_mod_tap {
+        tpmt: tap_preferred_mod_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "TMT";
+            label = "TPMT";
             #binding-cells = <2>;
             tapping-term-ms = <150>;
             quick_tap_ms = <0>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
         };
-        bmt: balanced_mod_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "BMT";
-            #binding-cells = <2>;
-            tapping-term-ms = <200>;
-            quick_tap_ms = <0>;
-            flavor = "balanced";
-            bindings = <&kp>, <&kp>;
-        };
-        td0: tap_dance_0 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp BSLH>, <&to 10>;
-        }; 
-        td10: tap_dance_10 {
-            compatible = "zmk,behavior-tap-dance";
-            #binding-cells = <0>;
-            tapping-term-ms = <200>;
-            bindings = <&kp LBKT>, <&to 0>;
-        }; 
     };
 
     macros {
-        ZMK_MACRO(macro_gg, bindings = <&kp ESC &kp COLON &kp G &kp G &kp EQUAL &kp LS(G)>;) // <ESC>gg=G
-        ZMK_MACRO(macro_x,  bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;) // <ESC>:x<ENTER>
-        ZMK_MACRO(macro_qa, bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;) // <ESC>:qa!<ENTER>
+        ZMK_MACRO(macro_vim_gg, bindings = <&kp ESC &kp COLON &kp G &kp G &kp EQUAL &kp LS(G)>;) // <ESC>gg=G
+        ZMK_MACRO(macro_vim_x,  bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;) // <ESC>:x<ENTER>
+        ZMK_MACRO(macro_vim_w,  bindings = <&kp ESC &kp COLON &kp W &kp ENTER>;) // <ESC>:w<ENTER>
+        ZMK_MACRO(macro_vim_wa, bindings = <&kp ESC &kp COLON &kp W &kp A &kp ENTER>;) // <ESC>:wa<ENTER>
+        ZMK_MACRO(macro_vim_qa, bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;) // <ESC>:qa!<ENTER>
     };
 
     keymap {
@@ -74,10 +55,10 @@
 
         layer_0 {
             bindings = <
-                   &kp TAB   &kp SQT  &kp COMMA &kp DOT        &kp P           &tmo 9 Y /*               &*/ &tmo 9 F               &kp G           &kp C         &kp R    &kp L    &td0
-                   &kp ESC   &tmo 1 A &tmo 2 O  &tmo 3 E       &tmo 4 U        &tmt LCTRL I /*           &*/ &tmt RCTRL D           &tmo 5 H        &tmo 6 T      &tmo 7 N &tmo 8 S &kp MINUS
-                   &kp LSHFT &kp SEMI &kp Q     &kp J          &kp K           &kp X /*                  &*/ &kp B                  &kp M           &kp W         &kp V    &kp Z    &mt RSHFT FSLH
-                /* &         &        &*/       &bmt LALT BSPC &bmt LGUI SPACE &bmt LC(LA(LSHFT)) RET /* &*/ &bmt RC(RA(RSHFT)) RET &bmt RGUI SPACE &bmt RALT DEL
+                   &kp TAB   &kp SQT   &kp COMMA &kp DOT         &kp P            &tplt 9 Y /*               &*/ &tplt 9 F               &kp G            &kp C          &kp R     &kp L     &kp BSLH
+                   &kp ESC   &tplt 1 A &tplt 2 O &tplt 3 E       &tplt 4 U        &tpmt LCTRL I /*           &*/ &tpmt RCTRL D           &tplt 5 H        &tplt 6 T      &tplt 7 N &tplt 8 S &kp MINUS
+                   &kp LSHFT &kp SEMI  &kp Q     &kp J           &kp K            &kp X /*                   &*/ &kp B                   &kp M            &kp W          &kp V     &kp Z     &mt RSHFT FSLH
+                /* &         &         &*/       &tpmt LALT BSPC &tpmt LGUI SPACE &tplt 10 RET /* &*/ &tplt 10 RET &tpmt RGUI SPACE &tpmt RALT DEL
                 >;
         };
 
@@ -94,10 +75,10 @@
         // Ten-Key
         layer_2 {
             bindings = <
-                   &none  &none &none  &none  &none  &none /*  &*/ &none  &kp N7 &kp N8 &kp N9 &kp KP_PLUS  &kp KP_MINUS
-                   &none  &none &trans &none  &none  &none /*  &*/ &none  &kp N4 &kp N5 &kp N6 &kp KP_COMMA &kp KP_DOT
-                   &trans &none &none  &none  &none  &none /*  &*/ &none  &kp N1 &kp N2 &kp N3 &kp KP_EQUAL &kp RET
-                /* &      &     &*/    &trans &trans &trans /* &*/ &trans &trans &kp N0
+                   &none  &none &none  &none  &none  &none /*  &*/ &none  &kp KP_N7 &kp KP_N8 &kp KP_N9 &kp KP_MINUS &kp KP_ASTERISK
+                   &none  &none &trans &none  &none  &none /*  &*/ &none  &kp KP_N4 &kp KP_N5 &kp KP_N6 &kp KP_PLUS  &kp KP_SLASH
+                   &trans &none &none  &none  &none  &none /*  &*/ &none  &kp KP_N1 &kp KP_N2 &kp KP_N3 &kp RETURN   &kp KP_DOT
+                /* &      &     &*/    &trans &trans &trans /* &*/ &trans &trans    &kp KP_N0
                 >;
         };
 
@@ -135,19 +116,19 @@
         // Macros
         layer_6 {
             bindings = <
-                   &none  &none &none     &none  &none  &none /*    &*/ &none  &macro_gg &none  &none &none &none
-                   &none  &none &none     &none  &none  &none /*    &*/ &trans &none     &trans &none &none &none
-                   &trans &none &macro_qa &none  &none  &macro_x /* &*/ &none  &none     &none  &none &none &trans
-                /* &      &     &*/       &trans &trans &trans /*   &*/ &trans &trans    &trans
+                   &none &none &none         &none &none        &none /*         &*/ &none         &macro_vim_gg &none  &none &none &none
+                   &none &none &none         &none &none        &none /*         &*/ &none         &none         &trans &none &none &none
+                   &none &none &macro_vim_qa &none &none        &macro_vim_x /*  &*/ &none         &none         &none  &none &none &none
+                /* &     &     &*/           &none &macro_vim_w &macro_vim_wa /* &*/ &macro_vim_wa &macro_vim_w  &none
                 >;
         };
 
         // Reserved
         layer_7 {
             bindings = <
-                   &none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &none
-                   &none  &none &none &none  &none  &none /*  &*/ &trans &none  &trans &none &none &none
-                   &trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none &none &trans
+                   &none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none  &none &none
+                   &none  &none &none &none  &none  &none /*  &*/ &none  &none  &none  &trans &none &none
+                   &trans &none &none &none  &none  &none /*  &*/ &none  &none  &none  &none  &none &trans
                 /* &      &     &*/   &trans &trans &trans /* &*/ &trans &trans &trans
                 >;
         };
@@ -165,10 +146,10 @@
         // Keyboard & Bluetooth Control
         layer_9 {
             bindings = <
-                   &none &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans /*     &*/ &trans &none &none &none &none &none
-                   &none &none        &none        &out OUT_BLE &out OUT_USB &none /*      &*/ &none  &none &none &none &none &none
-                   &none &none        &none        &none        &none        &bt BT_CLR /* &*/ &none  &none &none &none &none &none
-                /* &     &            &*/          &none        &none        &none /*      &*/ &none  &none &none
+                   &none  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans /*     &*/ &trans &none &none &none &none &none
+                   &none  &none        &none        &out OUT_BLE &out OUT_USB &none /*      &*/ &none  &none &none &none &none &none
+                   &to 0  &to 10       &none        &none        &none        &bt BT_CLR /* &*/ &none  &none &none &none &none &none
+                /* &      &            &*/          &none        &none        &none /*      &*/ &none  &none &none
                 >;
         };
 
@@ -177,10 +158,10 @@
         // in most games.
         layer_10 {
             bindings = <
-                      &kp TAB   &kp Q &kp W &kp E   &kp R     &kp T /*  &*/ &kp Y  &kp U   &kp I     &kp O   &kp P    &td10
-                      &kp LSHFT &kp A &kp S &kp D   &kp F     &kp G /*  &*/ &kp H  &kp J   &kp K     &kp L   &kp SEMI &kp DQT
-                      &kp LCTRL &kp Z &kp X &kp C   &kp V     &kp B /*  &*/ &kp N  &kp M   &kp COMMA &kp DOT &kp BSLH &kp RSHFT
-                   /* &         &     &*/   &kp ESC &kp SPACE &mo 11 /* &*/ &mo 12 &kp RET &kp RCTRL
+                      &kp TAB   &kp Q &kp W &kp E   &kp R     &kp T /*  &*/ &tplt 9 Y &kp U   &kp I     &kp O   &kp P    &kp LBKT
+                      &kp LSHFT &kp A &kp S &kp D   &kp F     &kp G /*  &*/ &kp H     &kp J   &kp K     &kp L   &kp SEMI &kp DQT
+                      &kp LCTRL &kp Z &kp X &kp C   &kp V     &kp B /*  &*/ &kp N     &kp M   &kp COMMA &kp DOT &kp BSLH &kp RSHFT
+                   /* &         &     &*/   &kp ESC &kp SPACE &mo 11 /* &*/ &mo 12    &kp RET &kp RCTRL
                 >;
         };
 

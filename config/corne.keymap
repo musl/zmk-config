@@ -55,7 +55,7 @@
 
         layer_0 {
             bindings = <
-                   &kp TAB   &kp SQT   &kp COMMA &kp DOT         &kp P            &tplt 9 Y /*                &*/ &tplt 9 F                &kp G            &kp C          &kp R     &kp L     &kp BSLH
+                   &kp TAB   &kp SQT   &kp COMMA &kp DOT         &kp P            &tplt 12 Y /*               &*/ &tplt 12 F               &kp G            &kp C          &kp R     &kp L     &kp BSLH
                    &kp ESC   &tplt 1 A &tplt 2 O &tplt 3 E       &tplt 4 U        &tpmt LCTRL I /*            &*/ &tpmt RCTRL D            &tplt 5 H        &tplt 6 T      &tplt 7 N &tplt 8 S &kp MINUS
                    &kp LSHFT &kp SEMI  &kp Q     &kp J           &kp K            &kp X /*                    &*/ &kp B                    &kp M            &kp W          &kp V     &kp Z     &mt RSHFT FSLH
                 /* &         &         &*/       &tpmt LALT BSPC &tpmt LGUI SPACE &tpmt LC(LA(LSHIFT)) RET /* &*/ &tpmt RC(RA(RSHIFT)) RET &tpmt RGUI SPACE &tpmt RALT DEL
@@ -143,32 +143,22 @@
                 >;
         };
 
-        // Keyboard & Bluetooth Control
-        layer_9 {
-            bindings = <
-                   &none  &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans /*     &*/ &trans &none &none &none &none &none
-                   &none  &none        &none        &out OUT_BLE &out OUT_USB &none /*      &*/ &none  &none &none &none &none &none
-                   &none  &tog 10      &none        &none        &none        &bt BT_CLR /* &*/ &none  &none &none &none &none &none
-                /* &      &            &*/          &none        &none        &none /*      &*/ &none  &none &none
-                >;
-        };
-
         // QWERTY Gaming
         // Note: No tapping behaviors except for layer switching due to the fact that they interfere with key bindings
         // in most games.
-        layer_10 {
+        layer_9 {
             bindings = <
-                      &kp TAB   &kp Q &kp W &kp E   &kp R     &tplt 9 T /* &*/ &tplt 9 Y &kp U   &kp I     &kp O   &kp P    &kp LBKT
-                      &kp LSHFT &kp A &kp S &kp D   &kp F     &kp G /*     &*/ &kp H     &kp J   &kp K     &kp L   &kp SEMI &kp DQT
-                      &kp LCTRL &kp Z &kp X &kp C   &kp V     &kp B /*     &*/ &kp N     &kp M   &kp COMMA &kp DOT &kp BSLH &kp RSHFT
-                   /* &         &     &*/   &kp ESC &kp SPACE &mo 11 /*    &*/ &mo 12    &kp RET &kp RCTRL
-                >;
+                  &kp TAB   &kp Q &kp W &kp E   &kp R     &tplt 12 T /* &*/ &tplt 12 Y &kp U   &kp I     &kp O   &kp P    &kp LBKT
+                  &kp LSHFT &kp A &kp S &kp D   &kp F     &kp G /*      &*/ &kp H      &kp J   &kp K     &kp L   &kp SEMI &kp DQT
+                  &kp LCTRL &kp Z &kp X &kp C   &kp V     &kp B /*      &*/ &kp N      &kp M   &kp COMMA &kp DOT &kp BSLH &kp RSHFT
+               /* &         &     &*/   &kp ESC &kp SPACE &mo 11 /*     &*/ &mo 10     &kp RET &kp RCTRL
+               >;
         };
 
         // QWERTY Gaming Mods Left
         // Note: No tapping behaviors except for layer switching due to the fact that they interfere with key bindings
         // in most games.
-        layer_11 {
+        layer_10 {
             bindings = <
                    &kp TILDE &kp N1 &kp N2 &kp N3   &kp N4 &kp N5 /* &*/ &none &none  &none  &none &none &none
                    &kp CAPS  &kp N6 &kp N7 &kp N8   &kp N9 &kp N0 /* &*/ &none &none  &none  &none &none &none
@@ -180,7 +170,7 @@
         // QWERTY Gaming Mods Right
         // Note: No tapping behaviors except for layer switching due to the fact that they interfere with key bindings
         // in most games.
-        layer_12 {
+        layer_11 {
             bindings = <
                    &none  &none &none  &none  &none  &none /* &*/ &none  &kp N7 &kp N8 &kp N9 &kp KP_PLUS  &kp KP_MINUS
                    &none  &none &trans &none  &none  &none /* &*/ &none  &kp N4 &kp N5 &kp N6 &kp KP_COMMA &kp KP_DOT
@@ -189,6 +179,15 @@
                 >;
         };
 
+        // Keyboard & Bluetooth Control
+        layer_12 {
+            bindings = <
+                   &none &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans /*     &*/ &trans &none &none &none &none &none
+                   &none &none        &none        &out OUT_BLE &out OUT_USB &none /*      &*/ &none  &none &none &none &none &none
+                   &none &none        &tog 9       &none        &none        &bt BT_CLR /* &*/ &none  &none &none &none &none &none
+                /* &     &            &*/          &none        &none        &none /*      &*/ &none  &none &none
+                >;
+        };
     };
 };
 

@@ -55,10 +55,10 @@
 
         layer_0 {
             bindings = <
-                   &kp TAB   &kp SQT   &kp COMMA &kp DOT         &kp P            &tplt 9 Y /*               &*/ &tplt 9 F               &kp G            &kp C          &kp R     &kp L     &kp BSLH
-                   &kp ESC   &tplt 1 A &tplt 2 O &tplt 3 E       &tplt 4 U        &tpmt LCTRL I /*           &*/ &tpmt RCTRL D           &tplt 5 H        &tplt 6 T      &tplt 7 N &tplt 8 S &kp MINUS
-                   &kp LSHFT &kp SEMI  &kp Q     &kp J           &kp K            &kp X /*                   &*/ &kp B                   &kp M            &kp W          &kp V     &kp Z     &mt RSHFT FSLH
-                /* &         &         &*/       &tpmt LALT BSPC &tpmt LGUI SPACE &tplt 10 RET /* &*/ &tplt 10 RET &tpmt RGUI SPACE &tpmt RALT DEL
+                   &kp TAB   &kp SQT   &kp COMMA &kp DOT         &kp P            &tplt 9 Y /*                &*/ &tplt 9 F                &kp G            &kp C          &kp R     &kp L     &kp BSLH
+                   &kp ESC   &tplt 1 A &tplt 2 O &tplt 3 E       &tplt 4 U        &tpmt LCTRL I /*            &*/ &tpmt RCTRL D            &tplt 5 H        &tplt 6 T      &tplt 7 N &tplt 8 S &kp MINUS
+                   &kp LSHFT &kp SEMI  &kp Q     &kp J           &kp K            &kp X /*                    &*/ &kp B                    &kp M            &kp W          &kp V     &kp Z     &mt RSHFT FSLH
+                /* &         &         &*/       &tpmt LALT BSPC &tpmt LGUI SPACE &tpmt LC(LA(LSHIFT)) RET /* &*/ &tpmt RC(RA(RSHIFT)) RET &tpmt RGUI SPACE &tpmt RALT DEL
                 >;
         };
 
@@ -158,10 +158,10 @@
         // in most games.
         layer_10 {
             bindings = <
-                      &kp TAB   &kp Q &kp W &kp E   &kp R     &kp T /*  &*/ &tplt 9 Y &kp U   &kp I     &kp O   &kp P    &kp LBKT
-                      &kp LSHFT &kp A &kp S &kp D   &kp F     &kp G /*  &*/ &kp H     &kp J   &kp K     &kp L   &kp SEMI &kp DQT
-                      &kp LCTRL &kp Z &kp X &kp C   &kp V     &kp B /*  &*/ &kp N     &kp M   &kp COMMA &kp DOT &kp BSLH &kp RSHFT
-                   /* &         &     &*/   &kp ESC &kp SPACE &mo 11 /* &*/ &mo 12    &kp RET &kp RCTRL
+                      &kp TAB   &kp Q &kp W &kp E   &kp R     &tplt 9 T /* &*/ &tplt 9 Y &kp U   &kp I     &kp O   &kp P    &kp LBKT
+                      &kp LSHFT &kp A &kp S &kp D   &kp F     &kp G /*     &*/ &kp H     &kp J   &kp K     &kp L   &kp SEMI &kp DQT
+                      &kp LCTRL &kp Z &kp X &kp C   &kp V     &kp B /*     &*/ &kp N     &kp M   &kp COMMA &kp DOT &kp BSLH &kp RSHFT
+                   /* &         &     &*/   &kp ESC &kp SPACE &mo 11 /*    &*/ &mo 12    &kp RET &kp RCTRL
                 >;
         };
 

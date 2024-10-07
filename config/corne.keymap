@@ -43,7 +43,7 @@
     };
 
     macros {
-        ZMK_MACRO(macro_vim_gg, bindings = <&kp ESC &kp COLON &kp G &kp G &kp EQUAL &kp LS(G)>;) // <ESC>gg=G
+        ZMK_MACRO(macro_vim_gg, bindings = <&kp ESC &kp G &kp G &kp EQUAL &kp LS(G)>;) // <ESC>gg=G
         ZMK_MACRO(macro_vim_x,  bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;) // <ESC>:x<ENTER>
         ZMK_MACRO(macro_vim_w,  bindings = <&kp ESC &kp COLON &kp W &kp ENTER>;) // <ESC>:w<ENTER>
         ZMK_MACRO(macro_vim_wa, bindings = <&kp ESC &kp COLON &kp W &kp A &kp ENTER>;) // <ESC>:wa<ENTER>

@@ -21,17 +21,17 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
-/ {
+// {
 	behaviors {
-tpmt:
-		tap_preferred_mod_tap {
-			compatible = "zmk,behavior-hold-tap";
-			label = "TPMT";
-			tapping-term-ms = <150>;
-			quick-tap-ms = <0>;
-			flavor = "tap-preferred";
-			bindings = <&kp>, <&kp>;
-		};
+        tpmt
+            tap_preferred_mod_tap {
+                compatible = "zmk,behavior-hold-tap";
+                label = "TPMT";
+                tapping-term-ms = <150>;
+                quick-tap-ms = <0>;
+                flavor = "tap-preferred";
+                bindings = <&kp>, <&kp>;
+            };
 	};
 	combos {
 		compatible = "zmk,combos";
@@ -109,31 +109,31 @@ tpmt:
 		};
 	};
 	macros {
-macro_vim_gg:
-		macro_vim_gg {
-			compatible = "zmk,behavior-macro";
-			bindings = <&kp ESC &kp G &kp G &kp EQUAL &kp LS(G)>;
-		};
-macro_vim_x:
-		macro_vim_x {
-			compatible = "zmk,behavior-macro";
-			bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;
-		};
-macro_vim_w:
-		macro_vim_w {
-			compatible = "zmk,behavior-macro";
-			bindings = <&kp ESC &kp COLON &kp W &kp ENTER>;
-		};
-macro_vim_wa:
-		macro_vim_wa {
-			compatible = "zmk,behavior-macro";
-			bindings = <&kp ESC &kp COLON &kp W &kp A &kp ENTER>;
-		};
-macro_vim_qa_bang:
-		macro_vim_qa_bang {
-			compatible = "zmk,behavior-macro";
-			bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;
-		};
+        macro_vim_gg:
+            macro_vim_gg {
+                compatible = "zmk,behavior-macro";
+                bindings = <&kp ESC &kp G &kp G &kp EQUAL &kp LS(G)>;
+            };
+        macro_vim_x:
+            macro_vim_x {
+                compatible = "zmk,behavior-macro";
+                bindings = <&kp ESC &kp COLON &kp X &kp ENTER>;
+            };
+        macro_vim_w:
+           macro_vim_w {
+               compatible = "zmk,behavior-macro";
+               bindings = <&kp ESC &kp COLON &kp W &kp ENTER>;
+           };
+        macro_vim_wa:
+            macro_vim_wa {
+                compatible = "zmk,behavior-macro";
+                bindings = <&kp ESC &kp COLON &kp W &kp A &kp ENTER>;
+            };
+        macro_vim_qa_bang:
+            macro_vim_qa_bang {
+                compatible = "zmk,behavior-macro";
+                bindings = <&kp ESC &kp COLON &kp Q &kp A &kp EXCLAMATION &kp ENTER>;
+            };
 	};
 	keymap {
 		compatible = "zmk,keymap";
